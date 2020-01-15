@@ -1,5 +1,3 @@
 #!/bin/bash
 echo "Hello World!"
-echo "hai"
-echo "hello"
-exit
+echo "I am process # $$"
