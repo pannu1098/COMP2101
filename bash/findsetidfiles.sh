@@ -27,5 +27,5 @@ echo "Setgid files:"
 find / -type f -executable -perm -2000 -ls 2>/dev/null | sort -k 4
 echo ""
 #task 2
-#first 10 regular files
 echo "10 largest files:"
+koka
