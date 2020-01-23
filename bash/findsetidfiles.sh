@@ -27,4 +27,5 @@ echo "Setgid files:"
 find / -type f -executable -perm -2000 -ls 2>/dev/null | sort -k 4
 echo ""
 #task 2
-echo "10 largest files:"
+echo "10 largest files :"
+find / -type f|ls -l --block-size=M  2>/dev/null | awk '{print $3,$5,$9}' | sort -nr -k 2 | head -10
