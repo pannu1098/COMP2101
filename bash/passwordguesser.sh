@@ -14,7 +14,7 @@ myString="navdeep"
 
 #[ $myString = $referenceString ] && echo "Correct!" || echo "Incorrect."
 #
-echo "password guess"
+echo "guess password"
 read guesspass
 if [ "$myString" = "$guesspass" ];then
   echo "Correct!"
