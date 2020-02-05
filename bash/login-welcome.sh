@@ -14,7 +14,7 @@
 #   You will need multiple tests to set a title
 #   Invent your own titles, do not use the ones from this example
 
-###############
+##############
 # Variables   #
 ###############
 title="Overlord"
