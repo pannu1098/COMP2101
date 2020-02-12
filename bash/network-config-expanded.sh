@@ -62,7 +62,7 @@ EOF
 #####
 # define the interface being summarized
 #interface="eno1"
-interfaces=$(ifconfig | grep -w -o '^[^ ]*:' | tr -d :)
+ifconfig | grep -w -o '^[^ ]*:' | tr -d :
 for interface in $interfaces; do
 # Find an address and hostname for the interface being summarized
 # we are assuming there is only one IPV4 address assigned to this interface
