@@ -3,7 +3,6 @@
 
 # create an empty array to put the command line arguments into
 myargs=()
-$#="-h help"
 # loop through the command line arguments
 while [ $# -gt 0 ]; do
   # tell the user how many things are left on the command line
@@ -22,7 +21,6 @@ while [ $# -gt 0 ]; do
 #          Anything that wasn't recognized on the command line should still go into the myargs array
 
 
-
   case  "$1" in
      -h)
      echo 'you added "-h " for help'
@@ -31,8 +29,8 @@ while [ $# -gt 0 ]; do
      -v)
      echo 'vorbose mode is ON'
      ;;
-     -d )
-      case "$2" in
+     -d)
+     case "$2" in
         [0-9] )
         echo "debug mode is ON and number is "$2
         shift
@@ -44,7 +42,7 @@ while [ $# -gt 0 ]; do
       ;;
       *)
       eror=$1
-      echo $eror"Error unexpected value"
+      echo $eror"  Error unexpected value"
     ;;
   esac
 
@@ -57,7 +55,6 @@ while [ $# -gt 0 ]; do
   # go back to the top of the loop to see if anything is left to work on
 done
 echo "Done"
-echo ""
 echo "${myargs[@]}"
 
 # TASK2: display the settings and myargs contents
