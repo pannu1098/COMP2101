@@ -27,16 +27,18 @@ while [ $# -gt 0 ]; do
      exit
      ;;
      -v)
-     echo 'vorbose mode is ON'
+     modeon=1
      ;;
      -d)
      case "$2" in
         [0-9] )
-        echo "debug mode is ON and number is "$2
+        modeon=2
+        myargs+=("$2")
         shift
         ;;
         *)
         echo "-d must be follwed by single digit number"
+        myargs+=("$2")
         shift
         esac
       ;;
@@ -55,9 +57,26 @@ while [ $# -gt 0 ]; do
   # go back to the top of the loop to see if anything is left to work on
 done
 echo "Done"
-echo "${myargs[@]}"
+
+
 
 # TASK2: display the settings and myargs contents
+
 #         Tell the user if vebose mode is on
 #         Tell the user if debug mode is on and if it is, what number it is set to
 #         Print out the myargs array with a label
+    #############
+    #TASK 2
+echo "the argument in the array"
+echo "${myargs[@]}"
+    #         Tell the user if vebose mode is on
+case  "$modeon" in
+    1)
+   echo 'vebose mode is on'
+   ;;
+   2)
+   #         Tell the user if debug mode is on and if it is, what number it is set to Print out the myargs array with a label
+   echo "debug mode is on and number is  "${myargs[1]}
+
+  ;;
+esac
