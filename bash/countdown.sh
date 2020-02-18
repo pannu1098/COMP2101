@@ -11,6 +11,7 @@ trap foundsecret 3
 function foundsecret {
   sleepCount=0
   doCountdown|dialog --gauge "they found the secret to getting out of the script and exit immediately" 7 60
+  stty sane
   exit
 
 }

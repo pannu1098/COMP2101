@@ -30,7 +30,7 @@ die2=$(( RANDOM % rangerandon + baisrandom))
 addition=$((die1+1+die2))
 avarage=$((avarage/2))
 #summary
-echo "Rolling pair of dice with 9 faces i.e. same as the number of letters in my name,
+echo "Rolling pair of dice with 9 faces as 9 letter in my user name pannu1098,
 
 die1 = $die1,
 
