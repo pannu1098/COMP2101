@@ -3,14 +3,16 @@
 
 # create an empty array to put the command line arguments into
 myargs=()
+modeon=0
+modeond=12
 # loop through the command line arguments
 while [ $# -gt 0 ]; do
   # tell the user how many things are left on the command line
-  echo "There are $# things left to process on the command line."
+#  echo "There are $# things left to process on the command line."
   # add whatever is in $1 to the myargs array
   myargs+=("$1")
   # tell the user what we did
-  echo "Added \'$1\' to the arguments array"
+#  echo "Added \'$1\' to the arguments array"
 
 # TASK 1: instead of just adding arguments to an array, use a case statement to recognize some options
 #          Options to recognize: -h for help, -v for verbose mode, -d N for debug mode with N being a single digit number
@@ -27,12 +29,13 @@ while [ $# -gt 0 ]; do
      exit
      ;;
      -v)
+
      modeon=1
      ;;
      -d)
      case "$2" in
         [0-9] )
-        modeon=2
+        modeond=$2
         myargs+=("$2")
         shift
         ;;
@@ -52,11 +55,11 @@ while [ $# -gt 0 ]; do
   # this decrements the argument count for us
   shift
   # tell the user we shifted things
-  echo "Shifted command line, leaving $# things left to process."
-  echo "--------------------------"
+  #echo "Shifted command line, leaving $# things left to process."
+  #echo "--------------------------"
   # go back to the top of the loop to see if anything is left to work on
 done
-echo "Done"
+#echo "Done"
 
 
 
@@ -68,15 +71,21 @@ echo "Done"
     #############
     #TASK 2
 echo "the argument in the array"
-echo "${myargs[@]}"
+echo "${myargs[*]}"
     #         Tell the user if vebose mode is on
-case  "$modeon" in
-    1)
-   echo 'vebose mode is on'
-   ;;
-   2)
-   #         Tell the user if debug mode is on and if it is, what number it is set to Print out the myargs array with a label
-   echo "debug mode is on and number is  "${myargs[1]}
+#case  "$modeon" in
+#    1)
+#   echo 'vebose mode is on'
+#   ;;
+#   2)
+#   #         Tell the user if debug mode is on and if it is, what number it is set to Print out the myargs array with a label
+  # echo "debug mode is on and number is  "${myargs[1]}
 
-  ;;
-esac
+#  ;;
+#esac
+if [ $modeon = 1 ]; then
+  echo 'vebose mode is on'
+fi
+if [ $modeond -lt 9 ]; then
+  echo "debug mode is on and number is  "${myargs[1]}
+fi
