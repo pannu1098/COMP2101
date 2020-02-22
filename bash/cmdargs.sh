@@ -70,8 +70,8 @@ done
 #         Print out the myargs array with a label
     #############
     #TASK 2
-echo "the argument in the array"
-echo "${myargs[*]}"
+#echo "the argument in the array"
+#echo "${myargs[*]}"
     #         Tell the user if vebose mode is on
 #case  "$modeon" in
 #    1)
