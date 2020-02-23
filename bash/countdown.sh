@@ -6,22 +6,14 @@
 #       reset the count to the maximum and tell the user they are not allowed to interrupt
 #       the count. If the script receives a QUIT signal, tell the user they found the secret
 #       to getting out of the script and exit immediately.
-trap reset 2
-trap foundsecret 3
-function foundsecret {
-  sleepCount=0
-  doCountdown|dialog --gauge "they found the secret to getting out of the script and exit immediately" 7 60
-  stty sane
-  exit
-
-}
 #### Variables
+trap resetcount 2 #trap for int signal
+trap knowsecret 3 #trap for ouit signal
 programName="$0" # used by error_functions.sh
 sleepTime=1 # delay used by sleeptime
 numberOfSleeps=10 # how many sleeps to wait for before quitting for inactivity
 
 #### Functions
-
 # This function will send an error message to stderr
 # Usage:
 #   error-message ["some text to print to stderr"]
@@ -47,10 +39,20 @@ EOF
 }
 
 # Normally traps catch signals and do something useful or necessary with them
+function knowsecret {
+	#tell the user with message box (you found the seceret getting out of scripit ) and than exit
+	dialog --msgbox "You found  the secret of getting out of the script." 7 60
+  stty sane
+	exit
+}
 
+function resetcount {
+    sleepCount=$numberOfSleeps
+	doCountdown|dialog --gauge "You are not allowed to interrupt the count." 7 60
+  stty sane
+}
 
 # Produce the numbers for the countdown
-
 function doCountdown {
 while [ $sleepCount -gt 0 ]; do
     echo $((sleepCount * 100 / $numberOfSleeps))
@@ -58,6 +60,8 @@ while [ $sleepCount -gt 0 ]; do
     sleep $sleepTime
 done
 }
+
+
 
 #### Main Program
 
@@ -93,13 +97,7 @@ fi
 
 sleepCount=$numberOfSleeps
 
-
-
-function reset {
-  doCountdown|dialog --gauge "you are not allowed to interrupt the count" 7 60
-}
 doCountdown|dialog --gauge "Remaining Time" 7 60
+stty sane
 
-#|dialog --gauge "Remaining Time" 7 60
-#stty sane
 echo "Wait counter expired, exiting peacefully"
